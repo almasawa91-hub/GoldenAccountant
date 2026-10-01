@@ -21,8 +21,8 @@ object AppModule {
         Room.databaseBuilder(context, AppDatabase::class.java, "golden_accountant.db").build()
 
     @Provides
-    fun accountDao(database: AppDatabase): AccountDao = database.accountDao()
+    fun accountDao(database: AppDatabase): AccountDao = database.accounts()
 
     @Provides
-    fun productDao(database: AppDatabase): ProductDao = database.productDao()
+    fun productDao(database: AppDatabase): ProductDao = database.products()
 }
