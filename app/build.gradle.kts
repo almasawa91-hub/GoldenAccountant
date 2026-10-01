@@ -15,5 +15,5 @@ dependencies {
  implementation("androidx.compose.material3:material3"); implementation("androidx.compose.material:material-icons-extended")
  implementation("androidx.room:room-runtime:2.6.1"); implementation("androidx.room:room-ktx:2.6.1"); ksp("androidx.room:room-compiler:2.6.1")
  implementation("com.google.dagger:hilt-android:2.52"); ksp("com.google.dagger:hilt-compiler:2.52"); implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
- testImplementation("junit:junit:4.13.2"); testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.9.0")
+ testImplementation("junit:junit:4.13.2"); testImplementation("org.jetbrains.kotlin:kotlin-test:2.0.21"); testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.9.0")
 }
