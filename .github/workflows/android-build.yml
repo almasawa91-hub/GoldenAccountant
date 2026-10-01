@@ -4,7 +4,7 @@ on:
   branches: ["**"]
  workflow_dispatch:
 concurrency:
- group: golden-accountant-${ github.ref }
+ group: golden-accountant-${{ github.ref }}
  cancel-in-progress: true
 jobs:
  build:
