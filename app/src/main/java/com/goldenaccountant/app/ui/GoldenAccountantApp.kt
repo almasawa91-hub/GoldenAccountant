@@ -5,7 +5,26 @@ import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import com.goldenaccountant.app.ui.screens.*
 import com.goldenaccountant.app.ui.theme.GoldenTheme
-@Composable fun GoldenAccountantApp(){var s by remember{mutableIntStateOf(0)};val screens=listOf<@Composable()->Unit>({DashboardScreen()},{SalesScreen()},{AccountsScreen()},{InventoryScreen()});GoldenTheme{Scaffold(bottomBar={NavigationBar{NavigationBarItem(s==0,{s=0},icon={Icon(Icons.Default.SpaceDashboard,null)},label={Text("الرئيسية")});NavigationBarItem(s==1,{s=1},icon={Icon(Icons.Default.PointOfSale,null)},label={Text("المبيعات")});NavigationBarItem(s==2,{s=2},icon={Icon(Icons.Default.AccountBalance,null)},label={Text("الحسابات")});NavigationBarItem(s==3,{s=3},icon={Icon(Icons.Default.Inventory2,null)},label={Text("المخزون")})}}){p->Box(Modifier.padding(p)){screens[s]()}}}}
+
+@Composable fun GoldenAccountantApp() {
+    var selected by remember { mutableIntStateOf(0) }
+    GoldenTheme {
+        Scaffold(bottomBar = { NavigationBar {
+            NavigationBarItem(selected == 0, { selected = 0 }, { Icon(Icons.Default.SpaceDashboard, null) }, label = { Text("الرئيسية") })
+            NavigationBarItem(selected == 1, { selected = 1 }, { Icon(Icons.Default.PointOfSale, null) }, label = { Text("المبيعات") })
+            NavigationBarItem(selected == 2, { selected = 2 }, { Icon(Icons.Default.AccountBalance, null) }, label = { Text("الحسابات") })
+            NavigationBarItem(selected == 3, { selected = 3 }, { Icon(Icons.Default.Inventory2, null) }, label = { Text("المخزون") })
+        }}) { p ->
+            Box(Modifier.padding(p)) {
+                when (selected) {
+                    0 -> DashboardScreen()
+                    1 -> SalesScreen()
+                    2 -> AccountsScreen()
+                    3 -> InventoryScreen()
+                }
+            }
+        }
+    }
+}
