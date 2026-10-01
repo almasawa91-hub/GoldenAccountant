@@ -13,6 +13,10 @@ abstract class AppDatabase:RoomDatabase(){
  abstract fun company():CompanyDao
  abstract fun audit():AuditDao
  companion object { val MIGRATION_1_2=object:Migration(1,2){override fun migrate(db:SupportSQLiteDatabase){
+ db.execSQL("CREATE INDEX IF NOT EXISTS index_accounts_active ON accounts(active)")
+ db.execSQL("CREATE INDEX IF NOT EXISTS index_products_active ON products(active)")
+ db.execSQL("DROP INDEX IF EXISTS index_journal_entries_referenceType_referenceId")
+ db.execSQL("CREATE UNIQUE INDEX IF NOT EXISTS index_journal_entries_referenceType_referenceId ON journal_entries(referenceType,referenceId)")
  db.execSQL("CREATE TABLE IF NOT EXISTS account_categories (id TEXT NOT NULL, name TEXT NOT NULL, sortOrder INTEGER NOT NULL, active INTEGER NOT NULL, PRIMARY KEY(id))")
  db.execSQL("CREATE UNIQUE INDEX IF NOT EXISTS index_account_categories_name ON account_categories(name)")
  db.execSQL("CREATE TABLE IF NOT EXISTS account_category_links (accountId TEXT NOT NULL, categoryId TEXT NOT NULL, PRIMARY KEY(accountId,categoryId))")
