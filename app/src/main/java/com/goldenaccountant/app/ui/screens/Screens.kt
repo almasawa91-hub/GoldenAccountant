@@ -23,7 +23,7 @@ import javax.inject.Inject
 }
 
 @Composable fun AccountsScreen(vm: AccountsViewModel = hiltViewModel()) {
-    val accounts by vm.items.collectAsState()
+    val accounts by vm.items.collectAsState(initial = emptyList())
     Column(Modifier.fillMaxSize().padding(16.dp)) {
         Text("الحسابات", style = MaterialTheme.typography.headlineMedium)
         LazyColumn { items(accounts, key = { it.id }) { account ->
@@ -39,7 +39,7 @@ import javax.inject.Inject
 }
 
 @Composable fun InventoryScreen(vm: ProductsViewModel = hiltViewModel()) {
-    val products by vm.items.collectAsStateWithLifecycle()
+    val products by vm.items.collectAsState(initial = emptyList())
     Column(Modifier.fillMaxSize().padding(16.dp)) {
         Text("المخزون", style = MaterialTheme.typography.headlineMedium)
         LazyColumn { items(products, key = { it.id }) { product ->
