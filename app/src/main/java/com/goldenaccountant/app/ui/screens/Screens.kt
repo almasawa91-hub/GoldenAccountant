@@ -3,11 +3,12 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.goldenaccountant.app.data.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -22,7 +23,7 @@ import javax.inject.Inject
 }
 
 @Composable fun AccountsScreen(vm: AccountsViewModel = hiltViewModel()) {
-    val accounts by vm.items.collectAsStateWithLifecycle()
+    val accounts by vm.items.collectAsState()
     Column(Modifier.fillMaxSize().padding(16.dp)) {
         Text("الحسابات", style = MaterialTheme.typography.headlineMedium)
         LazyColumn { items(accounts, key = { it.id }) { account ->
